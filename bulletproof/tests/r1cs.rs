@@ -17,7 +17,7 @@ use rand_core::{CryptoRng, RngCore};
 use std::time::{Duration, Instant};
 
 const MIMC_ROUNDS: usize = 5;
-const SAMPLES: usize = 16380; //1048576//131070;//1048570;//131070;//16380;//16380;//16384
+const SAMPLES: usize = 131070; //1048576//131070;//1048570;//131070;//16380;//16380;//16384
 
 
 fn mimc (mut xl: Scalar, mut xr: Scalar, constants: &[Scalar]) -> Scalar {
@@ -68,7 +68,7 @@ fn mimc_gadget_test() {
     
     let start = Instant::now();
     let pc_gens = PedersenGens::default();
-    let bp_gens = BulletproofGens::new(2<<17, 1);
+    let bp_gens = BulletproofGens::new(2<<20, 1);
     crs_time += start.elapsed();
 
     let crs_time = crs_time.subsec_nanos() as f64 / 1_000_000_000f64 + (crs_time.as_secs() as f64);
